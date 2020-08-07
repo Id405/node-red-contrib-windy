@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    RED.nodes.registerType('windy-upload',{
+        category: 'output',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            stationid: {value:0, validate:RED.validators.number()},
+            apikey: {type:"text"} //TODO make a credential but I havent been able to get credentials to work
+        },
+        inputs:1,
+        outputs:0,
+        icon: "file.png",
+        label: function() {
+            return this.name||"windy-upload";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="windy-upload">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label> <br>
+        <input type="text" id="node-input-name" placeholder="Name"> <br>
+        <label for="node-input-apikey"><i class="icon-tag"></i> Api Key</label> <br>
+        <input type="text" id="node-input-apikey" placeholder="Api Key"> <br>
+        <label for="node-input-stationid"><i class="icon-tag"></i> Station Id</label> <br>
+        <input type="text" id="node-input-stationid" placeholder="Station Id"> <br>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="windy-upload">
+    <p>Sends the inputted json data to windy.com, windy.com only updates every 5 minutes so this node should only be sent data with that interval</p>
+</script>
