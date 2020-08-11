@@ -13,6 +13,8 @@ module.exports = function(RED) {
         this.context().set("station", {})
         let windsum = 0;
         let windcount = 0;
+        this.context().set("lastUpload", Date.now() - config.interval * 60000 + 30000);
+
         node.on('input', function(msg) { //TODO make system that allows for adding aliases for sensor readings through config file
             let station = this.context().get("station")
 
@@ -79,15 +81,16 @@ module.exports = function(RED) {
               station.precip = msg.payload.rain_in; // TODO Verify if rain is over last hour
             }
 
-            if(msg.topic == "upload") { //TODO just upload every config.interval minutes instead of doing this weird upload trigger thing
+            if(Date.now() - this.context().get("lastUpload") >= config.interval * 60000) {
+              this.context().set("lastUpload", Date.now());
+
               if(windcount > 0) {
                   station.wind = windsum/windcount;
               }
 
               requestData = {observations:[station]};
 
-              // node.log(JSON.stringify(requestData, null, 2))
-
+              //node.log(JSON.stringify(requestData, null, 2))
 
               request({
                   url: `https://stations.windy.com/pws/update/${node.config.apikey}`,
