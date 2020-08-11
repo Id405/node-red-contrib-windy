@@ -18,9 +18,11 @@ module.exports = function(RED) {
 
             station.station = node.config.stationid;
 
-            if(typeof msg.payload.time === "string") {
-              station.dateutc = msg.payload.time;
-            }
+//            if(typeof msg.payload.time === "string") {
+//              station.dateutc = msg.payload.time;
+//            }
+
+            station.ts = Date.now();
 
             if(isNumeric(msg.payload.temperature_C)) {
               station.temp = msg.payload.temperature_C;
