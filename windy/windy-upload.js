@@ -13,7 +13,10 @@ module.exports = function(RED) {
         this.context().set("station", {})
         let windsum = 0;
         let windcount = 0;
+        let credentials = this.credentials;
         this.context().set("lastUpload", Date.now() - config.interval * 60000 + 30000);
+
+        node.log(credentials);
 
         node.on('input', function(msg) { //TODO make system that allows for adding aliases for sensor readings through config file
             let station = this.context().get("station")
@@ -77,9 +80,9 @@ module.exports = function(RED) {
               station.precip = msg.payload.rain_cm;
             }
 
-            if(isNumeric(msg.payload.rain_in)) {
-              station.precip = msg.payload.rain_in; // TODO Verify if rain is over last hour
-            }
+            // if(isNumeric(msg.payload.rain_in)) {
+            //   station.precip = msg.payload.rain_in; // TODO figure out rain measurement
+            // }
 
             if(Date.now() - this.context().get("lastUpload") >= config.interval * 60000) {
               this.context().set("lastUpload", Date.now());
@@ -90,10 +93,10 @@ module.exports = function(RED) {
 
               requestData = {observations:[station]};
 
-              //node.log(JSON.stringify(requestData, null, 2))
+              node.log(JSON.stringify(requestData, null, 2));
 
               request({
-                  url: `https://stations.windy.com/pws/update/${node.config.apikey}`,
+                  url: `https://stations.windy.com/pws/update/${node.credentials.apikey}`,
                   method: "POST",
                   json: true,
                   body: requestData
