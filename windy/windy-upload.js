@@ -110,5 +110,12 @@ module.exports = function(RED) {
         });
     }
 
-    RED.nodes.registerType("windy-upload", WindyNode);
+    RED.nodes.registerType("windy-upload", WindyNode,
+    {
+      credentials: {
+        apikey: {type:"text"},
+      },
+      encrypted: true
+    }
+    );
 }
