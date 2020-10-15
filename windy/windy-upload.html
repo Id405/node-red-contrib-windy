@@ -5,8 +5,10 @@
         defaults: {
             name: {value:""},
             stationid: {value:0, validate:RED.validators.number()},
-            apikey: {type:"text"}, //TODO make a credential but I havent been able to get credentials to work
             interval: {value:"5"}
+        },
+        credentials: {
+            apikey: {type:"text"}
         },
         inputs:1,
         outputs:0,
@@ -25,7 +27,7 @@
         <input type="text" id="node-input-apikey" placeholder="Api Key"> <br>
         <label for="node-input-stationid"><i class="icon-tag"></i> Station Id</label> <br>
         <input type="text" id="node-input-stationid" placeholder="Station Id"> <br>
-				<label for="node-input-interval"><i class="icon-tag"></i> Upload Interval</label> <br>
+		<label for="node-input-interval"><i class="icon-tag"></i> Upload Interval</label> <br>
         <input type="text" id="node-input-interval" placeholder="5"> <br>
     </div>
 </script>
