@@ -53,5 +53,3 @@ Wind information should be as raw as you can provide as it is used to calculate 
 # To do list
  - Proper error handling on html request
  - Make a config file that can add aliases for names in the payload
- - Detailed description of node inside of node-red
- - Get having the api key be a credential instead of a config value work
