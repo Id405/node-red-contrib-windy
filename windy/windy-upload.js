@@ -18,7 +18,7 @@ module.exports = function(RED) {
 
         node.log(credentials);
 
-        node.on('input', function(msg) { //TODO make system that allows for adding aliases for sensor readings through config file
+        node.on('input', function(msg) { //TODO make this code not suck
             let station = this.context().get("station")
 
             station.station = node.config.stationid;
@@ -76,9 +76,9 @@ module.exports = function(RED) {
               station.baromin = msg.payload.pressure_baromin;
             }
 
-            if(isNumeric(msg.payload.rain_cm)) {
-              station.precip = msg.payload.rain_cm;
-            }
+            // if(isNumeric(msg.payload.rain_cm)) {
+            //   station.precip = msg.payload.rain_cm;
+            // }
 
             // if(isNumeric(msg.payload.rain_in)) {
             //   station.precip = msg.payload.rain_in; // TODO figure out rain measurement

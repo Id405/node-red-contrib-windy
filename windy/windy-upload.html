@@ -12,7 +12,7 @@
         },
         inputs:1,
         outputs:0,
-        icon: "file.png",
+        icon: "bridge.svg",
         label: function() {
             return this.name||"windy-upload";
         }
@@ -34,4 +34,38 @@
 
 <script type="text/html" data-help-name="windy-upload">
     <p>Sends the inputted json data to windy.com</p>
+    <p>Keep "Upload Interval" with an interval of at least 5 minutes because thats the minimum time interval that windy.com updates at</p>
+    <h3> Inputs </h3>
+    <dl class="message-properties">
+        <dt>msg.payload.temperature_C
+            <span class="property-type">float | int</span>
+        </dt>
+        <dt>msg.payload.temperature_F
+            <span class="property-type">float | int</span>
+        </dt>
+        <dt>msg.payload.humidity
+            <span class="property-type">float | int</span>
+        </dt>
+        <dt>msg.payload.wind_speed_kph
+            <span class="property-type">float | int</span>
+        </dt>
+        <dt>msg.payload.wind_speed_mph
+            <span class="property-type">float | int</span>
+        </dt>
+        <dt>msg.payload.wind_avg_km_h
+            <span class="property-type">float | int</span>
+        </dt>
+        <dt>msg.payload.wind_dir_deg
+            <span class="property-type">float | int</span>
+        </dt>
+        <dt>msg.payload.pressure_pa
+            <span class="property-type">float | int</span>
+        </dt>
+        <dt>msg.payload.pressure_mbar
+            <span class="property-type">float | int</span>
+        </dt>
+        <dt>msg.payload.pressure_baromin
+            <span class="property-type">float | int</span>
+        </dt>
+    </dl>
 </script>
